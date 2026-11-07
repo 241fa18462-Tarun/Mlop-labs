@@ -1,0 +1,27 @@
+data:
+  raw_path: data/raw/churn.csv
+  processed_dir: data/processed
+  target_column: Churn
+  id_column: customerID
+
+paths:
+  model: models/random_forest_baseline.pkl
+  preprocessor: models/preprocessor.pkl
+  evaluation_report: artifacts/evaluation_report.json
+  quality_gate_report: reports/quality_gate_report.json
+  inference_output: outputs/production_predictions.csv
+  failure_report: reports/lab10_failure_report.json
+
+mlflow:
+  tracking_uri: sqlite:///mlflow.db
+
+registry:
+  model_name: Telco_Churn_Production_Model
+  decision_metric: roc_auc
+
+quality_gate:
+  metric: roc_auc
+  minimum_value: 0.60
+
+lab10:
+  repetitions: 1
